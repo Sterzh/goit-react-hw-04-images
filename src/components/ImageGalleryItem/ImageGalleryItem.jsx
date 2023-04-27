@@ -1,10 +1,10 @@
 // import PropTypes from 'prop-types';
-// import css from './ContactForm.module.css';
+import css from './ImageGalleryItem.module.css';
 
 const ImageGalleryItem = () => {
   return (
-    <li class="gallery-item">
-      <img src="" alt="" />
+    <li className={css.ImageGalleryItem}>
+      <img src="" alt="" className={css.ImageGalleryItemImage} />
     </li>
   );
 };

@@ -1,12 +1,12 @@
 // import PropTypes from 'prop-types';
-// import css from './Filter.module.css';
+import css from './Filter.module.css';
 
 const Modal = () => {
   // console.log(this.props);
 
   return (
-    <div class="overlay">
-      <div class="modal">
+    <div className={css.Overlay}>
+      <div className={css.Modal}>
         <img src="" alt="" />
       </div>
     </div>

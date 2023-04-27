@@ -1,10 +1,10 @@
 // import PropTypes from 'prop-types';
-// import css from './Filter.module.css';
+import css from './Button.module.css';
 
 const Button = () => {
   // console.log(this.props);
 
-  return <ul class="gallery"></ul>;
+  return <ul className={css.gallery}></ul>;
 };
 
 export default Button;

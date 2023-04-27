@@ -1,10 +1,10 @@
 // import PropTypes from 'prop-types';
-// import css from './Filter.module.css';
+import css from './Loader.module.css';
 
 const Loader = () => {
   // console.log(this.props);
 
-  return <ul class="gallery"></ul>;
+  return;
 };
 
 export default Loader;
