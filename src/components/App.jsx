@@ -1,50 +1,43 @@
 import { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import { Fetch, resetPage } from './Fetch';
-import Notiflix from 'notiflix';
+import ImageGalleryItem from './ImageGalleryItem';
+import Loader from './Loader';
+import Button from './Button';
 
 export class App extends Component {
   state = {
     valueInput: ' ',
     images: '',
     loading: false,
+    page: 1,
   };
-
-  // componentDidMount() {
-  //   this.setState({ loading: true });
-
-  //   setTimeout(() => {
-  //     try {
-  //       const fetchPictures = Fetch(this.state.valueInput);
-  //     } catch (error) {
-  //       Notiflix.Notify.failure(error);
-  //     }
-  //   }, 500);
-  // }
 
   formSubmit = e => {
     this.setState({ valueInput: e });
+    this.setState({ page: 1 });
+  };
 
-    setTimeout(() => {
-      <Fetch valueInput={this.state.valueInput}></Fetch>;
-      // try {
-      //   Fetch(this.state.valueInput);
-      // } catch (error) {
-      //   Notiflix.Notify.failure(error);
-      // }
-    }, 1);
-
-    // resetPage();
+  incrementPage = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   render() {
-    // console.log(this.state.valueInput);
+    console.log(this.state.page);
     return (
       <div className="app">
-        {/* <Fetch valueInput={this.state.valueInput}></Fetch>; */}
         <Searchbar onSubmit={this.formSubmit}></Searchbar>
-        <ImageGallery></ImageGallery>
+        <ImageGallery>
+          <ImageGalleryItem
+            key=""
+            valueInput={this.state.valueInput}
+            page={this.state.page}
+            loading={this.state.loading}
+          ></ImageGalleryItem>
+        </ImageGallery>
+        <Loader></Loader>
+        <Button onclick={this.incrementPage}></Button>
+        {/* <Modal></Modal> */}
       </div>
     );
   }

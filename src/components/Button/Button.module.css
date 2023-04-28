@@ -2,12 +2,17 @@
 * Стили компонента Buton (Load more)
 */
 .Button {
+  display: flex;
+  justify-content: center;
   padding: 8px 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 2px;
   background-color: #3f51b5;
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
-  display: inline-block;
   color: #fff;
   border: 0;
   text-decoration: none;

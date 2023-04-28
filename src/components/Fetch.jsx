@@ -12,33 +12,6 @@ export class Fetch extends Component {
     loading: false,
   };
 
-  // async componentDidMount() {
-  //   const requestValue = await this.props.valueInput.trim();
-  //   const resetPage = await this.resetPage();
-
-  //   if (requestValue === '') {
-  //     // refs.loadMore.classList.remove('opacity');
-  //     // refs.input.value = '';
-  //     console.log(requestValue);
-  //   } else {
-  //     try {
-  //       const fetchPictures = await this.fetchPictures(requestValue);
-  //       if (fetchPictures.hits.length === 0) {
-  //         Notiflix.Notify.info(
-  //           'Sorry, there are no images matching your search query. Please try again.'
-  //         );
-  //       } else {
-  //         Notiflix.Notify.info(
-  //           `Hooray! We found ${fetchPictures.totalHits} images.`
-  //         );
-  //         // render(fetchPictures);
-  //       }
-  //     } catch (error) {
-  //       Notiflix.Notify.failure(error);
-  //     }
-  //   }
-  // }
-
   fetchPictures = async requestValue => {
     try {
       const response = await axios.get(

@@ -9,7 +9,7 @@ export default class Searchbar extends Component {
 
   handleChange = event => {
     this.setState({
-      valueInput: event.currentTarget.value.trim(),
+      valueInput: event.currentTarget.value.toLowerCase().trim(),
     });
   };
 
@@ -20,10 +20,11 @@ export default class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(this.state.valueInput);
-    this.setState({ valueInput: '' });
+    // this.setState({ valueInput: '' });
   };
 
   render() {
+    // console.log(this.state.valueInput);
     return (
       <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={this.handleSubmit}>
@@ -33,8 +34,8 @@ export default class Searchbar extends Component {
           <input
             className={css.SearchFormInput}
             type="text"
-            // autocomplete="off"
-            // autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
             value={this.state.valueInput}
             onChange={this.handleChange}
