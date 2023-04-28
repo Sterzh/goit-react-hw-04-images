@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 import css from './Searchbar.module.css';
 
-class Searchbar extends Component {
+export default class Searchbar extends Component {
   state = {
     valueInput: '',
   };
@@ -16,14 +16,10 @@ class Searchbar extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    if (this.state.valueInput !== '') {
-      this.props.onSubmit(this.state.valueInput);
+    if (this.state.valueInput.trim() === '') {
+      return;
     }
-
-    this.reset();
-  };
-
-  reset = () => {
+    this.props.onSubmit(this.state.valueInput);
     this.setState({ valueInput: '' });
   };
 
@@ -48,8 +44,6 @@ class Searchbar extends Component {
     );
   }
 }
-
-export default Searchbar;
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,

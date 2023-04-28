@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import { Fetch, resetPage } from './Fetch';
+import Notiflix from 'notiflix';
 
 export class App extends Component {
   state = {
@@ -10,24 +11,31 @@ export class App extends Component {
     loading: false,
   };
 
-  componentDidMount() {
-    this.setState({ loading: true });
+  // componentDidMount() {
+  //   this.setState({ loading: true });
 
-    setTimeout(() => {
-      Fetch(this.state.valueInput);
-    }, 500);
-  }
+  //   setTimeout(() => {
+  //     try {
+  //       const fetchPictures = Fetch(this.state.valueInput);
+  //     } catch (error) {
+  //       Notiflix.Notify.failure(error);
+  //     }
+  //   }, 500);
+  // }
 
   formSubmit = e => {
     this.setState({ valueInput: e });
 
-    // <Fetch valueInput={this.state.valueInput}></Fetch>;
-
     setTimeout(() => {
-      Fetch(this.state.valueInput);
+      <Fetch valueInput={this.state.valueInput}></Fetch>;
+      // try {
+      //   Fetch(this.state.valueInput);
+      // } catch (error) {
+      //   Notiflix.Notify.failure(error);
+      // }
     }, 1);
 
-    resetPage();
+    // resetPage();
   };
 
   render() {
