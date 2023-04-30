@@ -2,15 +2,18 @@ import { Component } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
 import ImageGalleryItem from './ImageGalleryItem';
-import Loader from './Loader';
 import Button from './Button';
+import Loader from './Loader/Loader';
+import Modal from './Modal/Modal';
 
 export class App extends Component {
   state = {
-    valueInput: ' ',
-    images: '',
+    valueInput: '',
+    upLoadImages: '',
     loading: false,
     page: 1,
+    modal: false,
+    modalImage: '',
   };
 
   formSubmit = e => {
@@ -22,22 +25,59 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  loadingStatus = e => {
+    this.setState({ loading: e });
+  };
+
+  handleUpLoadImages = e => {
+    this.setState({ upLoadImages: e });
+  };
+
+  openModal = event => {
+    const imageId = event.target.src;
+    const filterModalImage = this.state.upLoadImages.filter(
+      e => e.previewURL === imageId
+    );
+    this.setState({ modalImage: filterModalImage[0] });
+    this.setState({ modal: true });
+  };
+
+  closeModal = e => {
+    if (e.type === 'keydown') {
+      this.setState({ modal: false });
+    } else {
+      if (e.currentTarget === e.target) {
+        this.setState({ modal: false });
+      }
+    }
+  };
+
   render() {
-    console.log(this.state.page);
+    console.log(this.state.upLoadImages);
+    const { largeImageURL, tags } = this.state.modalImage;
     return (
       <div className="app">
         <Searchbar onSubmit={this.formSubmit}></Searchbar>
         <ImageGallery>
           <ImageGalleryItem
-            key=""
             valueInput={this.state.valueInput}
             page={this.state.page}
-            loading={this.state.loading}
+            loading={this.loadingStatus}
+            handleUpLoadImages={this.handleUpLoadImages}
+            openModal={this.openModal}
           ></ImageGalleryItem>
         </ImageGallery>
-        <Loader></Loader>
-        <Button onclick={this.incrementPage}></Button>
-        {/* <Modal></Modal> */}
+        {this.state.loading && <Loader></Loader>}
+        {this.state.upLoadImages !== '' && (
+          <Button onclick={this.incrementPage}></Button>
+        )}
+        {this.state.modal && (
+          <Modal
+            src={largeImageURL}
+            alt={tags}
+            closeModal={this.closeModal}
+          ></Modal>
+        )}
       </div>
     );
   }

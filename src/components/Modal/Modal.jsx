@@ -1,21 +1,36 @@
 // import PropTypes from 'prop-types';
-import css from './Filter.module.css';
+import { Component } from 'react';
+import css from './Modal.module.css';
+import PropTypes from 'prop-types';
 
-const Modal = () => {
-  // console.log(this.props);
+export default class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyDown);
+  }
 
-  return (
-    <div className={css.Overlay}>
-      <div className={css.Modal}>
-        <img src="" alt="" />
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown = e => {
+    this.props.closeModal(e);
+  };
+
+  render() {
+    console.log(this.props.alt);
+    return (
+      <div className={css.Overlay} onClick={this.props.closeModal}>
+        <div className={css.Modal}>
+          <img src={this.props.src} alt={this.props.alt} />
+          <p className={css.Alt}>{this.props.alt}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+Modal.propTypes = {
+  alt: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
-
-export default Modal;
-
-// Modal.propTypes = {
-//   contacts: PropTypes.array.isRequired,
-//   onchange: PropTypes.func.isRequired,
-// };

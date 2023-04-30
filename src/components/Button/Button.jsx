@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import css from './Button.module.css';
 
 const Button = ({ onclick }) => {
@@ -13,7 +13,6 @@ const Button = ({ onclick }) => {
 
 export default Button;
 
-// Button.propTypes = {
-//   contacts: PropTypes.array.isRequired,
-//   onchange: PropTypes.func.isRequired,
-// };
+Button.propTypes = {
+  onclick: PropTypes.func.isRequired,
+};

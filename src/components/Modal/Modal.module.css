@@ -3,6 +3,8 @@
  */
 
 .Overlay {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
@@ -16,6 +18,19 @@
 }
 
 .Modal {
+  position: relative;
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
+}
+
+.Alt {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -20px);
+  color: #3f51b5;
+  font-size: 34px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0;
 }

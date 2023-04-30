@@ -3,25 +3,21 @@ import { FidgetSpinner } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
 const Loader = () => {
-  // console.log(this.props);
-
   return (
-    <FidgetSpinner
-      visible={true}
-      height="80"
-      width="80"
-      ariaLabel="dna-loading"
-      wrapperStyle={{}}
-      wrapperClass="dna-wrapper"
-      ballColors={['#ff0000', '#00ff00', '#0000ff']}
-      backgroundColor="#F4442E"
-    />
+    <div className={css.fidgetSpinner}>
+      <FidgetSpinner
+        visible={true}
+        height="120"
+        width="120"
+        ariaLabel="dna-loading"
+        wrapperStyle={{}}
+        wrapperClass="dna-wrapper"
+        ballColors={['#3f51b5"', '#3f51b5"', '#3f51b5"']}
+        backgroundColor="#3f51b5"
+      />
+      Loading...
+    </div>
   );
 };
 
 export default Loader;
-
-// Loader.propTypes = {
-//   contacts: PropTypes.array.isRequired,
-//   onchange: PropTypes.func.isRequired,
-// };

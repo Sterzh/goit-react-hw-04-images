@@ -20,11 +20,9 @@ export default class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(this.state.valueInput);
-    // this.setState({ valueInput: '' });
   };
 
   render() {
-    // console.log(this.state.valueInput);
     return (
       <header className={css.Searchbar}>
         <form className={css.SearchForm} onSubmit={this.handleSubmit}>
