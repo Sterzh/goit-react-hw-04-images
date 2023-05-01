@@ -14,6 +14,7 @@ export class App extends Component {
     page: 1,
     modal: false,
     modalImage: '',
+    upLoadDataTotalhits: '',
   };
 
   formSubmit = e => {
@@ -31,6 +32,10 @@ export class App extends Component {
 
   handleUpLoadImages = e => {
     this.setState({ upLoadImages: e });
+  };
+
+  handleUpLoadDataTotalhits = e => {
+    this.setState({ upLoadDataTotalhits: e });
   };
 
   openModal = event => {
@@ -53,7 +58,8 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state.upLoadImages);
+    console.log(this.state.upLoadDataTotalhits);
+    console.log(this.state.upLoadImages.length);
     const { largeImageURL, tags } = this.state.modalImage;
     return (
       <div className="app">
@@ -64,13 +70,15 @@ export class App extends Component {
             page={this.state.page}
             loading={this.loadingStatus}
             handleUpLoadImages={this.handleUpLoadImages}
+            handleUpLoadDataTotalhits={this.handleUpLoadDataTotalhits}
             openModal={this.openModal}
           ></ImageGalleryItem>
         </ImageGallery>
         {this.state.loading && <Loader></Loader>}
-        {this.state.upLoadImages !== '' && (
-          <Button onclick={this.incrementPage}></Button>
-        )}
+        {this.state.upLoadImages !== '' &&
+          this.state.upLoadImages.length !== this.state.upLoadDataTotalhits && (
+            <Button onclick={this.incrementPage}></Button>
+          )}
         {this.state.modal && (
           <Modal
             src={largeImageURL}

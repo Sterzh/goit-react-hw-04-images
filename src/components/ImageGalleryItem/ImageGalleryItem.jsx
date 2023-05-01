@@ -22,8 +22,19 @@ export default class ImageGalleryItem extends Component {
       const response = await axios.get(
         `${this.static.BASE_URL}${this.static.MY_API_PIXABAY_KEY}&q=${this.props.valueInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.props.page}&per_page=${this.static.quantityObjects}`
       );
-      this.setState({ upLoadImages: response.data.hits });
-      this.props.handleUpLoadImages(response.data.hits);
+
+      const updateHits = response.data.hits.map(e => {
+        return {
+          id: e.id,
+          tags: e.tags,
+          previewURL: e.previewURL,
+          largeImageURL: e.largeImageURL,
+        };
+      });
+
+      this.setState({ upLoadImages: updateHits });
+      this.props.handleUpLoadDataTotalhits(response.data.totalHits);
+      this.props.handleUpLoadImages(updateHits);
     } catch (error) {
       return error;
     } finally {
@@ -50,20 +61,30 @@ export default class ImageGalleryItem extends Component {
           `${this.static.BASE_URL}${this.static.MY_API_PIXABAY_KEY}&q=${this.props.valueInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.props.page}&per_page=${this.static.quantityObjects}`
         );
         this.setState(prevState => ({ page: prevState.page + 1 }));
+
+        const updateHits = response.data.hits.map(e => {
+          return {
+            id: e.id,
+            tags: e.tags,
+            previewURL: e.previewURL,
+            largeImageURL: e.largeImageURL,
+          };
+        });
+
         if (prevProps.valueInput === this.props.valueInput) {
           this.setState(prevState => ({
-            upLoadImages: [...prevState.upLoadImages, ...response.data.hits],
+            upLoadImages: [...prevState.upLoadImages, ...updateHits],
           }));
           setTimeout(() => {
+            this.props.handleUpLoadDataTotalhits(response.data.totalHits);
             this.props.handleUpLoadImages(this.state.upLoadImages);
           }, 1);
         } else {
           this.setState({ page: 1 });
-          this.setState({
-            upLoadImages: response.data.hits,
-          });
+          this.setState({ upLoadImages: updateHits });
           setTimeout(() => {
-            this.props.handleUpLoadImages(response.data.hits);
+            this.props.handleUpLoadDataTotalhits(response.data.totalHits);
+            this.props.handleUpLoadImages(updateHits);
           }, 1);
         }
       } catch (error) {
