@@ -2,7 +2,7 @@
 import { FidgetSpinner } from 'react-loader-spinner';
 import css from './Loader.module.css';
 
-const Loader = () => {
+export default function Loader() {
   return (
     <div className={css.fidgetSpinner}>
       <FidgetSpinner
@@ -18,6 +18,4 @@ const Loader = () => {
       Loading...
     </div>
   );
-};
-
-export default Loader;
+}
