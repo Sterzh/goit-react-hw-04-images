@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import css from './Modal.module.css';
 import PropTypes from 'prop-types';

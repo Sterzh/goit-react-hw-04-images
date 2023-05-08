@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from 'react';
 import { React } from 'react';
 import axios from 'axios';
@@ -46,7 +47,7 @@ export default function ImageGalleryItem(props) {
         props.loading(false);
       }
     };
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     if (props.currentPage === 1 && props.valueInput === '') {
