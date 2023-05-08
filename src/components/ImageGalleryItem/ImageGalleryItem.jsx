@@ -47,7 +47,7 @@ export default function ImageGalleryItem(props) {
         props.loading(false);
       }
     };
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     if (props.currentPage === 1 && props.valueInput === '') {

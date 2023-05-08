@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import css from './Modal.module.css';
 import PropTypes from 'prop-types';
@@ -10,7 +9,7 @@ export default function Modal(props) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  });
 
   const handleKeyDown = e => {
     props.closeModal(e);
