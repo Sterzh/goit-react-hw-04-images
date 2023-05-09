@@ -22,11 +22,12 @@ export default function ImageGalleryItem(props) {
   const prevProps = usePrevious(props);
 
   useEffect(() => {
-    return async function response() {
+    response();
+    async function response() {
       props.loading(true);
       try {
         const response = await axios.get(
-          `${BASE_URL}${MY_API_PIXABAY_KEY}&q=${props.valueInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${props.page}&per_page=${quantityObjects}`
+          `${BASE_URL}${MY_API_PIXABAY_KEY}&q=${props.valueInput}&image_type=photo&orientation=horizontal&safesearch=true&page=${props.currentPage}&per_page=${quantityObjects}`
         );
 
         const updateHits = response.data.hits.map(e => {
@@ -46,7 +47,7 @@ export default function ImageGalleryItem(props) {
       } finally {
         props.loading(false);
       }
-    };
+    }
   }, []);
 
   useEffect(() => {
