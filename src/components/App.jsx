@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Searchbar from './Searchbar';
 import ImageGallery from './ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem';
+// import ImageGalleryItem from './ImageGalleryItem';
 import Button from './Button';
 import Loader from './Loader/Loader';
 import Modal from './Modal/Modal';
