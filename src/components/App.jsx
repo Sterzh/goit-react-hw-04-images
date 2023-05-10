@@ -48,6 +48,7 @@ export default function App() {
             largeImageURL: e.largeImageURL,
           };
         });
+
         if (page === 1) {
           setUpLoadImages(updateHits);
         } else {
@@ -95,12 +96,10 @@ export default function App() {
   return (
     <div className="app">
       <Searchbar onSubmit={formSubmit}></Searchbar>
-      <ImageGallery>
-        <ImageGalleryItem
-          upLoadImages={upLoadImages}
-          openModal={openModal}
-        ></ImageGalleryItem>
-      </ImageGallery>
+      <ImageGallery
+        upLoadImages={upLoadImages}
+        openModal={openModal}
+      ></ImageGallery>
       {loading && <Loader></Loader>}
       {upLoadImages !== '' && upLoadImages.length !== upLoadDataTotalhits && (
         <Button onclick={incrementPage}></Button>

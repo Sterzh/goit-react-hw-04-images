@@ -1,24 +1,19 @@
 import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 
-export default function ImageGalleryItem({ upLoadImages, openModal }) {
-  if (upLoadImages === '') {
-    return;
-  }
-
-  return upLoadImages.map(e => (
-    <li key={e.id} className={css.ImageGalleryItem}>
+export default function ImageGalleryItem({ event, openModal }) {
+  return (
+    <li className={css.ImageGalleryItem}>
       <img
-        src={e.previewURL}
-        alt={e.tags}
+        src={event.previewURL}
+        alt={event.tags}
         className={css.ImageGalleryItemImage}
         onClick={openModal}
       />
     </li>
-  ));
+  );
 }
 
 ImageGalleryItem.propTypes = {
-  upLoadImages: PropTypes.oneOfType([PropTypes.array, PropTypes.string])
-    .isRequired,
+  event: PropTypes.object.isRequired,
 };
