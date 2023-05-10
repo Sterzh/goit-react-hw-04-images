@@ -8,7 +8,6 @@ export default function Searchbar(props) {
   const handleChange = event => {
     setValueInput(event.currentTarget.value.toLowerCase().trim());
   };
-
   const handleSubmit = e => {
     e.preventDefault();
 
